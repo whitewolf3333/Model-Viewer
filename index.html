@@ -16,14 +16,17 @@
     </style>
 </head>
 <body >
-    <h1>Model Viewer</H1>
+    <h1>Model Viewer v1</H1>
     <canvas class="webgl"></canvas>
      
      <model-viewer 
-     src="assets/Webb.gltf"
+     camera-controls auto-rotate
+     id="exposure-demo" exposure="10"
      ar ios-src="assets/Webb.usdz"
-     poster="assets/webb_poster.jpeg" xr-environment 
-     camera-controls auto-rotate></model-viewer>
+     poster="assets/webb_poster.jpeg" 
+     skybox-image="assets/starmap_4k.jpg" 
+     src="assets/Webb.gltf"
+     ></model-viewer>
      <script>
         document.querySelector("#model-viewer").addEventListener('ar-status', (event) => {
           if(event.detail.status === 'failed'){
