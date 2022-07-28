@@ -8,6 +8,8 @@
 
     <style>
         model-viewer{
+        background-color: rgb(39, 45, 136);
+        --poster-color: #fff0;
           width: 480px;
           height: 480px;
           margin: 0 auto;
@@ -17,14 +19,14 @@
     
 </head>
 <body >
-    <h1>Model Viewer</H1>
+    <h1>Model Viewer2</H1>
     <canvas class="webgl"></canvas>
      
     <model-viewer bounds="tight" 
     enable-pan 
     src="assets/Webb.gltf" 
     ios-src="assets/Webb.usdz"
-    ar ar-modes="webxr scene-viewer quick-look" 
+    ar ar-modes="scene-viewer webxr quick-look" 
     camera-controls poster="assets/poster.png" 
     shadow-intensity="0.66" 
     exposure="0.31" 
