@@ -6,32 +6,27 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <title>Fit canvas to viewport for mobile devices</title>
   <style>
+     body {
+      scrollbar-width: none;
+      margin: 0px;
+      padding: 0;
+    }
     #container {
       display: block;
       width: 100vw;
       height: 100vh;
       position: relative;
-      
-      
     }
-
-    ::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
-
-    body {
-      scrollbar-width: none;
-      margin: 0px;
-      padding: 0;
-    }
-
     model-viewer {
       background-color: rgb(39, 45, 136);
       margin: 0 auto;
       position: relative;
       width: 100%;
       height: 100%;
+    }
+    ::-webkit-scrollbar {
+      width: 0;
+      height: 0;
     }
   </style>
 </head>
@@ -41,11 +36,7 @@
     <model-viewer id="idname" alt="webb telescope" src="assets/Webb.gltf" ios-src="assets/Webb.usdz" ar
       ar-modes="scene-viewer webxr quick-look" exposure="0.31" camera-controls enable-pan>
     </model-viewer>
-
-
-
   </div>
-
 </body>
 
 </html>
