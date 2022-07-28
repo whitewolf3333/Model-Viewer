@@ -7,54 +7,83 @@
     <title>06 - Animations</title>
 
     <style>
-        model-viewer{
-        background-color: rgb(39, 45, 136);
-        --poster-color: #fff0;
-          width: 480px;
-          height: 480px;
-          margin: 0 auto;
+        * {
+          margin: 0;
+          padding: 0;
         }
-        
-    </style>
+        #container {
+          margin: 0 auto;
+          width: 800px;
+          overflow: hidden;
+          position: relative;
+          border: 1px solid #000;
+          border-radius: 10px;
+          margin-top: 2px;
+        }
+        canvas {
+         display: block;
+        }
+        </style>
     
 </head>
 <body >
     <h1>Model Viewer2</H1>
-    <canvas class="webgl"></canvas>
-     
-    <model-viewer bounds="tight" 
-    enable-pan 
-    src="assets/Webb.gltf" 
-    ios-src="assets/Webb.usdz"
-    ar ar-modes="scene-viewer webxr quick-look" 
-    camera-controls poster="assets/poster.png" 
-    shadow-intensity="0.66" 
-    exposure="0.31" 
-    shadow-softness="0.73" 
-    environment-image="neutral" 
-    camera-orbit="-379.7deg 71.92deg auto">
-      <button class="Hotspot" slot="hotspot-3" data-position="-0.9880543242100543m 4.351513540410414m 1.4908594033207478m" data-normal="0.054739104893169285m -0.07068604950034965m 0.995995538544992m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Primary Mirror</div>
-      </button><button class="Hotspot" slot="hotspot-4" data-position="-0.19878573115321174m 3.3840905309025224m 8.545000076293938m" data-normal="0m 0m 1m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Secondary Mirror</div>
-      </button><button class="Hotspot" slot="hotspot-5" data-position="-1.9385570174676268m -0.262654055991117m 7.511774930738376m" data-normal="0.1073984434477471m 0.9917444042804678m 0.070061479597429m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Sun Shield</div>
-      </button><button class="Hotspot" slot="hotspot-6" data-position="-1.399148760671217m -2.0813706380480133m -0.16860258550234875m" data-normal="-0.9999998778590222m -0.00044014491575493505m 0.000224843042939863m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Space Bus</div>
-      </button><button class="Hotspot" slot="hotspot-7" data-position="-0.33935172325465146m -0.9003009517629792m -5.837615838431919m" data-normal="-1.0612610157920795e-7m -0.9454331313217543m -0.3258161969563994m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation">Solar Panels</div>
-      </button>
-      <div class="progress-bar hide" slot="progress-bar">
-          <div class="update-bar"></div>
-      </div>
-      <button slot="ar-button" id="ar-button">
-          View in your space
-      </button>
-      <div id="ar-prompt">
-          <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
-      </div>
-  </model-viewer>
-  
+    <div id="container">
+            <canvas class="webgl" width="800" height="600"></canvas>></canvas>
+            
+            <model-viewer bounds="tight" 
+            enable-pan 
+            src="assets/Webb.gltf" 
+            ios-src="assets/Webb.usdz"
+            ar ar-modes="scene-viewer webxr quick-look" 
+            camera-controls poster="assets/poster.png" 
+            shadow-intensity="0.66" 
+            exposure="0.31" 
+            shadow-softness="0.73" 
+            environment-image="neutral" 
+            camera-orbit="-379.7deg 71.92deg auto">
+            <button class="Hotspot" slot="hotspot-3" data-position="-0.9880543242100543m 4.351513540410414m 1.4908594033207478m" data-normal="0.054739104893169285m -0.07068604950034965m 0.995995538544992m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">Primary Mirror</div>
+            </button><button class="Hotspot" slot="hotspot-4" data-position="-0.19878573115321174m 3.3840905309025224m 8.545000076293938m" data-normal="0m 0m 1m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">Secondary Mirror</div>
+            </button><button class="Hotspot" slot="hotspot-5" data-position="-1.9385570174676268m -0.262654055991117m 7.511774930738376m" data-normal="0.1073984434477471m 0.9917444042804678m 0.070061479597429m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">Sun Shield</div>
+            </button><button class="Hotspot" slot="hotspot-6" data-position="-1.399148760671217m -2.0813706380480133m -0.16860258550234875m" data-normal="-0.9999998778590222m -0.00044014491575493505m 0.000224843042939863m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">Space Bus</div>
+            </button><button class="Hotspot" slot="hotspot-7" data-position="-0.33935172325465146m -0.9003009517629792m -5.837615838431919m" data-normal="-1.0612610157920795e-7m -0.9454331313217543m -0.3258161969563994m" data-visibility-attribute="visible">
+                <div class="HotspotAnnotation">Solar Panels</div>
+            </button>
+            <div class="progress-bar hide" slot="progress-bar">
+                <div class="update-bar"></div>
+            </div>
+            <button slot="ar-button" id="ar-button">
+                View in your space
+            </button>
+            <div id="ar-prompt">
+                <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+            </div>
+        </model-viewer>
+    </div>
+  <script>
+    (function() {
+      // We are resizing for mobile devices only. For other devices, the
+      // dimensions will be stuck at 800 * 600. To change the default dimensions,
+      // change the height and width of the canvas and the width of the #container
+      var win = window,
+          doc = document,
+          w = win.innerWidth,
+          h = win.innerHeight,
+          container = doc.getElementById('container'),
+          canvas = doc.getElementById('workspace');
+      
+      if( win.navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/i) ) {
+        canvas.height = h;
+        canvas.width  = w;
+        container.style.height = h+"px";
+        container.style.width = w+"px";
+      }
+    })();
+    </script>
      
       
 </body>
