@@ -33,10 +33,70 @@
 
 <body>
   <div id="container">
-    <model-viewer id="idname" alt="webb telescope" src="assets/Webb.gltf" ios-src="assets/Webb.usdz" ar
-      ar-modes="scene-viewer webxr quick-look" exposure="0.31" camera-controls enable-pan>
+    <model-viewer 
+    id="webb_telescope" 
+    bounds="tight"
+    alt="webb telescope" 
+    src="assets/Webb.gltf" 
+    poster="assets/poster.png"
+    shadow-intensity="0"
+    environment-image="assets/starmap_4k.jpg" 
+    exposure="8" skybox-image="assets/starmap_4k.jpg"
+    ios-src="assets/Webb.usdz" 
+    ar ar-modes="scene-viewer webxr quick-look" 
+    exposure="0.31" camera-controls enable-pan>
+
+    
+    
     </model-viewer>
+    
+    
+    
+
   </div>
+  <script>
+    const modelViewerParameters = document.querySelector("model-viewer#webb_telescope");
+    
+    modelViewerParameters.addEventListener("load", (ev) => {
+    
+      let material = modelViewerParameters.model.materials[18];
+    
+      let metalnessDisplay = 0.62;
+      let roughnessDisplay = 0.02;
+    
+      metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
+      roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
+    
+      material.pbrMetallicRoughness.setMetallicFactor(0.62);
+      metalnessDisplay.textContent = 0.62;
+
+      material.pbrMetallicRoughness.setRoughnessFactor(0.02);
+      roughnessDisplay.textContent = 0.02;
+      // Defaults to gold
+      //material.pbrMetallicRoughness.setBaseColorFactor([0.7294, 0.5333, 0.0392]);
+    /*
+      document.querySelector('#metalness').addEventListener('input', (event) => {
+        material.pbrMetallicRoughness.setMetallicFactor(event.target.value);
+        metalnessDisplay.textContent = event.target.value;
+      });
+    
+      document.querySelector('#roughness').addEventListener('input', (event) => {
+        material.pbrMetallicRoughness.setRoughnessFactor(event.target.value);
+        roughnessDisplay.textContent = event.target.value;
+      });
+      */
+    });
+    </script>
 </body>
 
 </html>
+
+<!--<model-viewer bounds="tight"
+   enable-pan src="Webb.gltf" 
+   ar ar-modes="webxr scene-viewer quick-look"??? 
+   camera-controls poster="poster.webp" 
+   shadow-intensity="0" 
+   environment-image="starmap_4k.jpg" 
+   exposure="2" skybox-image="starmap_4k.jpg" 
+   shadow-softness="0" 
+   auto-rotate camera-orbit="60.3deg 84.87deg auto"> </model-viewer>-->
