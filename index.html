@@ -27,15 +27,13 @@
       height: 100%;
     }
 
-    ::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-    }
+    
   </style>
 </head>
 
 <body>
   <div id="container">
+    <h1>James Webb Space Telescope</h1>
     <model-viewer id="webb_telescope" bounds="tight" alt="webb telescope" src="assets/Webb.gltf"
       poster="assets/poster.png" shadow-intensity="0" environment-image="assets/starmap_4k.jpg" exposure="8"
       skybox-image="assets/starmap_4k.jpg" ios-src="assets/Webb.usdz" ar ar-modes="scene-viewer webxr quick-look"
@@ -63,18 +61,46 @@
 
     </model-viewer>
 
+    <h1>Asteroid</h1>
+    <model-viewer id="asteroid" bounds="tight" alt="asteroid" src="assets/asteroid.gltf"
+      poster="assets/asteroid_poster.jpeg" shadow-intensity="0" environment-image="assets/pillars_1k.hdr" exposure="1"
+      skybox-image="assets/starmap_4k.jpg"  ar ar-modes="scene-viewer webxr quick-look"
+      camera-target="0.0m -0.0m 0.0m" 
+      exposure="0.31" camera-controls enable-pan></model-viewer>
 
+      <h1>Earth</h1>
+      <model-viewer id="earth" bounds="tight" enable-pan src="assets/earth/scene.gltf" 
+      ios-src="assets/earth/Earth.usdz"
+      ar ar-modes="scene-viewer webxr quick-look" 
+      camera-controls enable-pan poster="assets/earth/poster.webp" shadow-intensity="0" 
+      auto-rotate exposure="1.71" environment-image="assets/earth/milkyway.jpg" 
+      skybox-image="assets/earth/milkyway.jpg"> 
+
+      </model-viewer>
 
 
   </div>
   <script>
     const modelViewerParameters = document.querySelector("model-viewer#webb_telescope");
+    const modelViewerTransform = document.querySelector("model-viewer#asteroid");
+    const modelViewerTransform_Earth = document.querySelector("model-viewer#earth");
+
+    modelViewerTransform.addEventListener("model-visibility", (ev) => {
+      
+      modelViewerTransform.scale = `${0.6} ${0.6} ${0.6}`;
+    });
+    modelViewerTransform_Earth.addEventListener("model-visibility", (ev) => {
+      
+      modelViewerTransform_Earth.scale = `${0.6} ${0.6} ${0.6}`;
+    });
 
     modelViewerParameters.addEventListener("load", (ev) => {
 
       let material = modelViewerParameters.model.materials[18];
       let material2 = modelViewerParameters.model.materials[22];
 
+      
+      
       material.pbrMetallicRoughness.setMetallicFactor(0.62);
       //metalnessDisplay.textContent = 0.62;
 
@@ -85,6 +111,8 @@
       //metalnessDisplay2.textContent = 0.62;
 
       material2.pbrMetallicRoughness.setRoughnessFactor(0.02);
+
+      
       //roughnessDisplay2.textContent = 0.02;
       // Defaults to gold
       //material.pbrMetallicRoughness.setBaseColorFactor([0.7294, 0.5333, 0.0392]);

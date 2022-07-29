@@ -1,0 +1,1 @@
+<model-viewer bounds="tight" enable-pan src="scene.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" auto-rotate exposure="1.71" environment-image="855dad81-3f0a-48bc-95c2-ac75b4cbb427" skybox-image="855dad81-3f0a-48bc-95c2-ac75b4cbb427"> </model-viewer>
