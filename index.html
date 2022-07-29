@@ -60,18 +60,19 @@
     modelViewerParameters.addEventListener("load", (ev) => {
     
       let material = modelViewerParameters.model.materials[18];
-    
-      let metalnessDisplay = 0.62;
-      let roughnessDisplay = 0.02;
-    
-      metalnessDisplay.textContent = material.pbrMetallicRoughness.metallicFactor;
-      roughnessDisplay.textContent = material.pbrMetallicRoughness.roughnessFactor;
-    
+      let material2 = modelViewerParameters.model.materials[22];
+      
       material.pbrMetallicRoughness.setMetallicFactor(0.62);
-      metalnessDisplay.textContent = 0.62;
+      //metalnessDisplay.textContent = 0.62;
 
       material.pbrMetallicRoughness.setRoughnessFactor(0.02);
-      roughnessDisplay.textContent = 0.02;
+      //roughnessDisplay.textContent = 0.02;
+
+      material2.pbrMetallicRoughness.setMetallicFactor(0.62);
+      //metalnessDisplay2.textContent = 0.62;
+
+      material2.pbrMetallicRoughness.setRoughnessFactor(0.02);
+      //roughnessDisplay2.textContent = 0.02;
       // Defaults to gold
       //material.pbrMetallicRoughness.setBaseColorFactor([0.7294, 0.5333, 0.0392]);
     /*
